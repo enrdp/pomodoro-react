@@ -6,6 +6,7 @@ const Modal = props => {
 
   // Return null if false
   if (!show) {
+    document.body.style.overflow = 'unset';
     return null;
   }
 

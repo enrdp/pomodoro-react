@@ -12,6 +12,7 @@ function PomodoroApp() {
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
   const [status, setStatus] = useState(STATUS.STOPPED)
   const [showModal, setShowModal] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const secondsToDisplay = secondsRemaining % 60
   const minutesRemaining = (secondsRemaining - secondsToDisplay) / 60
@@ -48,35 +49,44 @@ function PomodoroApp() {
         setSecondsRemaining(secondsRemaining - 1)
       } else {
         handleToggleModal()
+        changeValueButton()
         setStatus(STATUS.STOPPED)
       }
     },
     status === STATUS.STARTED ? 1000 : null,
   )
+  const changeValueButton = () => {
+    setDisable(true);
+  }
 
   const handleToggleModal = () => {
+    //Disable Scroll
+    if (typeof window != 'undefined' && window.document) {
+      document.body.style.overflow = 'hidden';
+    }
     setShowModal(!showModal);
+    setDisable(false);
   }
 
   return (
     <div className="App">
       <h1>React Pomodoro</h1>
       {status === "Stopped" && (
-        <button onClick={handleStart} type="button">
+        <button onClick={handleStart} disabled={disable} type="button">
         Start
         </button>
       )}
       {status === "Started" && (
-       <button onClick={handleStop} type="button">
+       <button onClick={handleStop} disabled={disable} type="button">
         Stop </button> 
       )}
-      <button onClick={handleReset} type="button">
+      <button onClick={handleReset} disabled={disable} type="button">
         Reset
       </button>
-      <button onClick={Increase} type="button">
+      <button onClick={Increase} disabled={disable} type="button">
           +
       </button>
-      <button onClick={Decrease} type="button">
+      <button onClick={Decrease} disabled={disable} type="button">
           -
       </button>
       <div style={{padding: 20}}>
