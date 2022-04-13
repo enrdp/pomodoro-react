@@ -4,8 +4,10 @@ import Notification from './notification';
 import ModalExtraTime from './modalExtraTime';
 
 const Modal = props => { 
-  const { show , close , timer } = props;
+  const { show , close } = props;
   const [showModalExtra, setshowModalExtra] = useState(false);
+  const [disable, setDisable] = useState(false);
+
 
   // Return null if false
   if (!show) {
@@ -14,17 +16,21 @@ const Modal = props => {
   }
   const handleToggleModalExtra = () => {
     setshowModalExtra(!showModalExtra);
+    setDisable(false);
+  }
+  const changeValueButton = () => {
+    setDisable(true);
   }
 
   return (
     
       <div className="modal-ui1">
         <Notification />
-        <h3 className="mdhead">Modal Heading</h3>  
-        <div className="mdbody">Modal Body</div> 
+        <h3 className="mdhead">Break Time</h3>  
+        <div className="mdbody">Relax</div> 
         <div className="mdactions">
-          <button className="btnui" type="button" onClick={handleToggleModalExtra}>OK</button>
-          <button onClick={close} className="btnui btnui2" name="close">Close</button>
+          <button className="btnui" type="button" disabled={disable} onClick={()=> [handleToggleModalExtra(), changeValueButton()]}>OK</button>
+          <button onClick={close} className="btnui btnui2" disabled={disable} name="close">Close</button>
         </div>
         <ModalExtraTime showModalExtra={showModalExtra} closeModalExtra={handleToggleModalExtra} />
       </div>
