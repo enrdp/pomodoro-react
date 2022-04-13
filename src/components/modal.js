@@ -1,5 +1,6 @@
 import React from 'react';
 import '../modal.css';
+import Notification from './notification';
 
 const Modal = props => { 
   const { show , close , timer } = props;
@@ -11,7 +12,9 @@ const Modal = props => {
   }
 
   return (
+    
       <div className="modal-ui1">
+        <Notification />
         <h3 className="mdhead">Modal Heading</h3>  
         <div className="mdbody">Modal Body</div> 
         <div className="mdactions">

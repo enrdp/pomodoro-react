@@ -67,7 +67,7 @@ function PomodoroApp() {
     setShowModal(!showModal);
     setDisable(false);
   }
-
+  
   return (
     <div className="App">
       <h1>React Pomodoro</h1>
@@ -93,7 +93,8 @@ function PomodoroApp() {
         {twoDigits(minutesToDisplay)}:
         {twoDigits(secondsToDisplay)}
       </div>
-      <Modal show={showModal} close={() => [handleToggleModal(), handleReset()]}  />
+      <Modal show={showModal} close={() => [handleToggleModal(), handleReset()]} />
+      
     </div>
   )
 }
