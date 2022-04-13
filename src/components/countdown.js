@@ -93,7 +93,7 @@ function PomodoroApp() {
         {twoDigits(minutesToDisplay)}:
         {twoDigits(secondsToDisplay)}
       </div>
-      <Modal show={showModal} close={() => [handleToggleModal(), handleReset()]} />
+      <Modal show={showModal} close={() => [handleToggleModal()]} closeModal={()=>[handleToggleModal(),handleReset()]} />
     </div>
   )
 }
