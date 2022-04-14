@@ -1,18 +1,20 @@
 import React, {useState, useEffect, useRef} from 'react'
 import Modal from './modal'
+import ProgressBar from './progressBar'
 
 const STATUS = {
   STARTED: 'Started',
   STOPPED: 'Stopped',
 }
 
-const INITIAL_COUNT = 3 //1500
+const INITIAL_COUNT = 10 //1500
 
 function PomodoroApp() {
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
   const [status, setStatus] = useState(STATUS.STOPPED)
   const [showModal, setShowModal] = useState(false);
   const [disable, setDisable] = useState(false);
+  const [value, setValue] = useState(0);
 
   const secondsToDisplay = secondsRemaining % 60
   const minutesRemaining = (secondsRemaining - secondsToDisplay) / 60
@@ -21,12 +23,14 @@ function PomodoroApp() {
   const handleStart = () => {
     setStatus(STATUS.STARTED)
   }
+
   const handleStop = () => {
     setStatus(STATUS.STOPPED)
   }
   const handleReset = () => {
     setStatus(STATUS.STOPPED)
     setSecondsRemaining(INITIAL_COUNT)
+    setValue(0)
   }
   const Increase = () => {
       if(status === "Stopped"){
@@ -42,11 +46,11 @@ function PomodoroApp() {
   }
 }
 }
-
   useInterval(
     () => {
-      if (secondsRemaining > 0) {
+      if (secondsRemaining > 0 && value >= 0) {
         setSecondsRemaining(secondsRemaining - 1)
+        setValue(value + 1)
       } else {
         handleToggleModal()
         changeValueButton()
@@ -67,12 +71,12 @@ function PomodoroApp() {
     setShowModal(!showModal);
     setDisable(false);
   }
-  
+
   return (
     <div className="App">
       <h1>React Pomodoro</h1>
       {status === "Stopped" && (
-        <button onClick={handleStart} disabled={disable} type="button">
+        <button onClick={() => [handleStart()]} disabled={disable} type="button">
         Start
         </button>
       )}
@@ -93,6 +97,7 @@ function PomodoroApp() {
         {twoDigits(minutesToDisplay)}:
         {twoDigits(secondsToDisplay)}
       </div>
+
       <Modal
       Decrease={Decrease}
       Increase={Increase}
@@ -103,6 +108,11 @@ function PomodoroApp() {
       minutesToDisplay={minutesToDisplay}
       show={showModal} close={() => [handleToggleModal()]} 
       closeModal={()=>[handleToggleModal(),handleReset()]} 
+      />
+
+      <ProgressBar
+      INITIAL_COUNT={INITIAL_COUNT}
+      value={value}
       />
     </div>
   )

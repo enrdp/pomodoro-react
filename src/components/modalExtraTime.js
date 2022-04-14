@@ -4,11 +4,8 @@ const ModalExtraTime = (props) => {
 
   const { showModalExtra,
           closeModalExtra,
-          secondsRemaining, 
-          setSecondsRemaining,
           minutesToDisplay,
           secondsToDisplay,
-          
         } = props;
 
   // Return null if false
