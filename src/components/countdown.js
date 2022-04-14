@@ -93,7 +93,17 @@ function PomodoroApp() {
         {twoDigits(minutesToDisplay)}:
         {twoDigits(secondsToDisplay)}
       </div>
-      <Modal show={showModal} close={() => [handleToggleModal()]} closeModal={()=>[handleToggleModal(),handleReset()]} />
+      <Modal
+      Decrease={Decrease}
+      Increase={Increase}
+      twoDigits={twoDigits}
+      secondsRemaining={secondsRemaining} 
+      setSecondsRemaining={setSecondsRemaining} 
+      secondsToDisplay={secondsToDisplay}
+      minutesToDisplay={minutesToDisplay}
+      show={showModal} close={() => [handleToggleModal()]} 
+      closeModal={()=>[handleToggleModal(),handleReset()]} 
+      />
     </div>
   )
 }
@@ -117,5 +127,4 @@ function useInterval(callback, delay) {
 
 }
 export default PomodoroApp;
-
 const twoDigits = (num) => String(num).padStart(2, '0')
