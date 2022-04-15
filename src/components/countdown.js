@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import Modal from './modal'
 import ProgressBar from './progressBar'
+import '../App.css'
 
 const STATUS = {
   STARTED: 'Started',
@@ -15,22 +16,27 @@ function PomodoroApp() {
   const [showModal, setShowModal] = useState(false);
   const [disable, setDisable] = useState(false);
   const [value, setValue] = useState(0);
+  const [progressBar, setProgressBar] = useState(0)
+  const [opacity, setOpacity] = useState('visible')
 
   const secondsToDisplay = secondsRemaining % 60
   const minutesRemaining = (secondsRemaining - secondsToDisplay) / 60
   const minutesToDisplay = minutesRemaining % 60
 
   const handleStart = () => {
+    setProgressBar(secondsRemaining)
     setStatus(STATUS.STARTED)
   }
 
   const handleStop = () => {
+    setOpacity('visible')
     setStatus(STATUS.STOPPED)
   }
   const handleReset = () => {
     setStatus(STATUS.STOPPED)
     setSecondsRemaining(INITIAL_COUNT)
     setValue(0)
+    setOpacity('visible')
   }
   const Increase = () => {
       if(status === "Stopped"){
@@ -41,8 +47,10 @@ function PomodoroApp() {
     if(status === "Stopped"){
       if(secondsRemaining <= 60){
         setSecondsRemaining(secondsRemaining)
-      }else {
-        setSecondsRemaining(secondsRemaining - 60)
+      }else if(secondsRemaining % 60 != 0){
+        setSecondsRemaining(secondsRemaining - secondsToDisplay)
+      }else{
+        setSecondsRemaining(secondsRemaining - secondsToDisplay - 60)
   }
 }
 }
@@ -51,11 +59,17 @@ function PomodoroApp() {
       if (secondsRemaining > 0 && value >= 0) {
         setSecondsRemaining(secondsRemaining - 1)
         setValue(value + 1)
+        if(opacity === 'visible'){
+          setOpacity('hidden')
+        }else{
+          setOpacity('visible')
+        }
       } else {
         handleToggleModal()
         changeValueButton()
         setStatus(STATUS.STOPPED)
       }
+      
     },
     status === STATUS.STARTED ? 1000 : null,
   )
@@ -68,6 +82,7 @@ function PomodoroApp() {
     if (typeof window != 'undefined' && window.document) {
       document.body.style.overflow = 'hidden';
     }
+    setValue(0)
     setShowModal(!showModal);
     setDisable(false);
   }
@@ -75,6 +90,16 @@ function PomodoroApp() {
   return (
     <div className="App">
       <h1>React Pomodoro</h1>
+      <div className='timer'>
+      <ProgressBar
+      value={value}
+      progressBar={progressBar}
+      />
+      <div className='progress__timer'>
+      <div style={{padding: 20}}>
+        {twoDigits(minutesToDisplay)}<span className={opacity}>:</span>
+        {twoDigits(secondsToDisplay)}
+      </div>
       {status === "Stopped" && (
         <button onClick={() => [handleStart()]} disabled={disable} type="button">
         Start
@@ -93,9 +118,8 @@ function PomodoroApp() {
       <button onClick={Decrease} disabled={disable} type="button">
           -
       </button>
-      <div style={{padding: 20}}>
-        {twoDigits(minutesToDisplay)}:
-        {twoDigits(secondsToDisplay)}
+      
+      </div>
       </div>
 
       <Modal
@@ -106,14 +130,12 @@ function PomodoroApp() {
       setSecondsRemaining={setSecondsRemaining} 
       secondsToDisplay={secondsToDisplay}
       minutesToDisplay={minutesToDisplay}
-      show={showModal} close={() => [handleToggleModal()]} 
+      show={showModal} 
+      close={() => [handleToggleModal()]} 
       closeModal={()=>[handleToggleModal(),handleReset()]} 
       />
 
-      <ProgressBar
-      INITIAL_COUNT={INITIAL_COUNT}
-      value={value}
-      />
+      
     </div>
   )
 }

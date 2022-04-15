@@ -1,3 +1,21 @@
+.timer{
+  position: relative;
+}
+.progress__timer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+}
+.hidden{
+  opacity: 0;
+}
+.visible { 
+  opacity: 1; 
+  transition: opacity 0.2s linear;
+}
+/* */
 .App {
   text-align: center;
 }
