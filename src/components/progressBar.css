@@ -1,13 +1,13 @@
 .progress__container{
     position: relative;
     width: fit-content;
-    margin: auto;
+    margin: 15px auto;
     transform: rotate(270deg);
   }
   .progress__content{
     position: absolute;
-    width: 380px;
-    height: 380px;
+    width: 480px;
+    height: 480px;
     background-color: white;
     z-index: 1;
     top: 50%;
@@ -18,8 +18,8 @@
   }
   .loader {
    position: relative;
-   height: 400px;
-   width: 400px;
+   height: 500px;
+   width: 500px;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -47,14 +47,13 @@
    padding:0;
   }
   .showTimer{
-      font-size: 70px;
-      padding: 35px 35px;
+      font-size: 10rem;
       z-index: 999;
       position: relative;
   }
   .button__timer{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
   /*

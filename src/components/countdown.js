@@ -90,7 +90,6 @@ function PomodoroApp() {
 
   return (
     <div className="App">
-      <h1>React Pomodoro</h1>
       <div className='timer'>
       <ProgressBar
       value={value}
@@ -103,34 +102,8 @@ function PomodoroApp() {
       </div>
 
 
-
-
-
-
-
-
-
-
-
-
-   
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div className='button__timer'>
-      <button onClick={Increase} disabled={disable} type="button">
+      <button className="button__increase" onClick={Increase} disabled={disable} type="button">
           +
       </button>
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -143,7 +116,7 @@ function PomodoroApp() {
         </defs>
     </svg>
     {status === "Started" && (
-    <button className="gooey-button gooey-button2" onClick={handleStop} disabled={disable} type="button">
+    <button className="gooey-button gooey-button_stop" onClick={handleStop} disabled={disable} type="button">
                       Stop
             <span className="bubbles">
             <span className="bubble"></span>
@@ -177,14 +150,23 @@ function PomodoroApp() {
         </span>
     </button>
 )}
+<button className="gooey-button gooey-button_reset" onClick={handleReset} disabled={disable} type="button">
+                      Reset
+            <span className="bubbles">
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+        </span>
+    </button>
       
-
-
-
-      <button onClick={handleReset} disabled={disable} type="button">
-        Reset
-      </button>
-      <button onClick={Decrease} disabled={disable} type="button">
+      <button className="button__decrease" onClick={Decrease} disabled={disable} type="button">
           -
       </button>
       </div>

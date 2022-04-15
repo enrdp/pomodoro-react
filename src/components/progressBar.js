@@ -14,8 +14,6 @@ function ProgressBar(props) {
         <div className="progress__content">
         </div>
         </div>
-        <progress value={value} max={progressBar}></progress>
-        {value}
       </div>
     )
 
