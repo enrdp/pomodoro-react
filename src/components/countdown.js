@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import Modal from './modal'
 import ProgressBar from './progressBar'
 import '../App.css'
+import './button.css'
 
 const STATUS = {
   STARTED: 'Started',
@@ -47,7 +48,7 @@ function PomodoroApp() {
     if(status === "Stopped"){
       if(secondsRemaining <= 60){
         setSecondsRemaining(secondsRemaining)
-      }else if(secondsRemaining % 60 != 0){
+      }else if(secondsRemaining % 60 !== 0){
         setSecondsRemaining(secondsRemaining - secondsToDisplay)
       }else{
         setSecondsRemaining(secondsRemaining - secondsToDisplay - 60)
@@ -96,29 +97,97 @@ function PomodoroApp() {
       progressBar={progressBar}
       />
       <div className='progress__timer'>
-      <div style={{padding: 20}}>
+      <div className="showTimer">
         {twoDigits(minutesToDisplay)}<span className={opacity}>:</span>
         {twoDigits(secondsToDisplay)}
       </div>
-      {status === "Stopped" && (
-        <button onClick={() => [handleStart()]} disabled={disable} type="button">
-        Start
-        </button>
-      )}
-      {status === "Started" && (
-       <button onClick={handleStop} disabled={disable} type="button">
-        Stop </button> 
-      )}
-      <button onClick={handleReset} disabled={disable} type="button">
-        Reset
-      </button>
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div className='button__timer'>
       <button onClick={Increase} disabled={disable} type="button">
           +
+      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
+                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+    {status === "Started" && (
+    <button className="gooey-button gooey-button2" onClick={handleStop} disabled={disable} type="button">
+                      Stop
+            <span className="bubbles">
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+        </span>
+    </button>
+    )}
+
+{status === "Stopped" && (
+    <button className="gooey-button" onClick={() => [handleStart()]} disabled={disable} type="button">
+                      Start
+            <span className="bubbles">
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+        </span>
+    </button>
+)}
+      
+
+
+
+      <button onClick={handleReset} disabled={disable} type="button">
+        Reset
       </button>
       <button onClick={Decrease} disabled={disable} type="button">
           -
       </button>
-      
+      </div>
       </div>
       </div>
 
