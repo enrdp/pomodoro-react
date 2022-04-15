@@ -15,6 +15,12 @@
   opacity: 1; 
   transition: opacity 0.2s linear;
 }
+.displayTimerHidden{
+  display: none;
+}
+.displayTimerVisible{
+  display: inherit;
+}
 /* */
 .App {
   text-align: center;

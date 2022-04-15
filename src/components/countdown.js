@@ -9,7 +9,7 @@ const STATUS = {
   STOPPED: 'Stopped',
 }
 
-const INITIAL_COUNT = 10 //1500
+const INITIAL_COUNT = 3 //1500
 
 function PomodoroApp() {
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
@@ -19,6 +19,7 @@ function PomodoroApp() {
   const [value, setValue] = useState(0);
   const [progressBar, setProgressBar] = useState(0)
   const [opacity, setOpacity] = useState('visible')
+  const [displayTimer, setDisplayTimer] = useState('displayTimerVisible')
 
   const secondsToDisplay = secondsRemaining % 60
   const minutesRemaining = (secondsRemaining - secondsToDisplay) / 60
@@ -66,6 +67,7 @@ function PomodoroApp() {
           setOpacity('visible')
         }
       } else {
+        setDisplayTimer('displayTimerHidden')
         handleToggleModal()
         changeValueButton()
         setStatus(STATUS.STOPPED)
@@ -83,14 +85,19 @@ function PomodoroApp() {
     if (typeof window != 'undefined' && window.document) {
       document.body.style.overflow = 'hidden';
     }
-    setValue(0)
+    if(displayTimer === 'displayTimerHidden'){
+    setDisplayTimer('displayTimerVisible')
+    }else{
+      setDisplayTimer('displayTimerHidden')
+    }
+    setValue(0);
     setShowModal(!showModal);
     setDisable(false);
   }
 
   return (
     <div className="App">
-      <div className='timer'>
+      <div className={`timer  ${displayTimer}`}>
       <ProgressBar
       value={value}
       progressBar={progressBar}
