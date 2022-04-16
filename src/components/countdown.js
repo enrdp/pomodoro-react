@@ -9,7 +9,7 @@ const STATUS = {
   STOPPED: 'Stopped',
 }
 
-const INITIAL_COUNT = 3 //1500
+const INITIAL_COUNT = 1500
 
 function PomodoroApp() {
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
