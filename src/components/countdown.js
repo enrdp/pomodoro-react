@@ -113,64 +113,20 @@ function PomodoroApp() {
       <button className="button__increase" onClick={Increase} disabled={disable} type="button">
           +
       </button>
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <defs>
-            <filter id="gooey">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
-                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
-            </filter>
-        </defs>
-    </svg>
+
     {status === "Started" && (
-    <button className="gooey-button gooey-button_stop" onClick={handleStop} disabled={disable} type="button">
-                      Stop
-            <span className="bubbles">
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-        </span>
+    <button className="button__stop" onClick={handleStop} disabled={disable} type="button">
+    Stop      
     </button>
     )}
 
-{status === "Stopped" && (
-    <button className="gooey-button" onClick={() => [handleStart()]} disabled={disable} type="button">
-                      Start
-            <span className="bubbles">
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-        </span>
+   {status === "Stopped" && (
+    <button className="button__start" onClick={() => [handleStart()]} disabled={disable} type="button">
+    Start
     </button>
 )}
-<button className="gooey-button gooey-button_reset" onClick={handleReset} disabled={disable} type="button">
-                      Reset
-            <span className="bubbles">
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-        </span>
+    <button className="button__reset" onClick={handleReset} disabled={disable} type="button">
+     Reset
     </button>
       
       <button className="button__decrease" onClick={Decrease} disabled={disable} type="button">
