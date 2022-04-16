@@ -74,3 +74,19 @@ button{
     cursor: pointer;
 }
 
+@media screen and (max-width: 520px) {
+  .button__stop, .button__start, .button__reset{
+    width: 25vw;
+    height: 15vw;
+    font-size: 6vw;
+    padding: 0;
+  }
+  .button__increase, .button__decrease{
+    width: 10vw;
+    padding: 0;
+    height: 8vw;
+    font-size: 6vw;
+  }
+  
+}
+
