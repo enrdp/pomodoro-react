@@ -6,14 +6,16 @@
   }
   .progress__content{
     position: absolute;
-    width: 480px;
-    height: 480px;
-    background-color: lightgray;
+    width: 470px;
+    height: 470px;
+    background-color: white;
     z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 9px 2px #000000; 
+    box-shadow: 0px 0px 9px 2px #000000;
   }
   .loader {
    position: relative;

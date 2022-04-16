@@ -90,6 +90,7 @@ function PomodoroApp() {
     }else{
       setDisplayTimer('displayTimerHidden')
     }
+    setOpacity('visible')
     setValue(0);
     setShowModal(!showModal);
     setDisable(false);
@@ -97,7 +98,7 @@ function PomodoroApp() {
 
   return (
     <div className="App">
-      <div className={`timer  ${displayTimer}`}>
+      <div className={`timer ${displayTimer}`}>
       <ProgressBar
       value={value}
       progressBar={progressBar}
@@ -146,7 +147,7 @@ function PomodoroApp() {
       minutesToDisplay={minutesToDisplay}
       show={showModal} 
       close={() => [handleToggleModal()]} 
-      closeModal={()=>[handleToggleModal(),handleReset()]} 
+      closeModal={()=>[handleToggleModal(),handleReset()]}
       />
 
       
